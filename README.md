@@ -9,7 +9,7 @@ A simple and lightweight **web app** to calculate M-Pesa transaction fees for:
 ---
 
 ## 🚀 Live Demo  
-👉 [Try it here on Replit](https://your-replit-link-here)  
+👉 [Try it here on Replit](https://mpesa-fee-calculator2025.netlify.app/)  
 
 ---
 
