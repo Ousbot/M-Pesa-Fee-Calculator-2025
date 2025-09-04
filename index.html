@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>M-Pesa Fee Calculator 2025</title>
+  <style>
+    body { 
+      font-family: Arial, sans-serif; 
+      margin: 0; 
+      padding: 0; 
+      background: #f9f9f9; 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      min-height: 100vh; 
+    }
+    .container { 
+      width: 95%; 
+      max-width: 480px; 
+      background: white; 
+      padding: 25px; 
+      border-radius: 15px; 
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15); 
+      text-align: center; 
+    }
+    h2 { color: green; margin-bottom: 10px; }
+    p { color: #555; font-size: 16px; margin-bottom: 20px; }
+    input, select, button { 
+      width: 100%; 
+      padding: 14px; 
+      margin: 10px 0; 
+      font-size: 18px; 
+      border: 1px solid #ccc; 
+      border-radius: 8px; 
+      box-sizing: border-box; 
+    }
+    button { 
+      background: green; 
+      color: white; 
+      font-weight: bold; 
+      cursor: pointer; 
+      transition: 0.3s; 
+    }
+    button:hover { background: darkgreen; }
+    #result { 
+      margin-top: 20px; 
+      font-size: 20px; 
+      font-weight: bold; 
+      color: #222; 
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>M-Pesa Fee Calculator (2025)</h2>
+    <p>Enter the amount and select transaction type:</p>
+    <input type="number" id="amount" placeholder="Amount in Ksh">
+    <select id="type">
+      <option value="send">Send Money (Registered M-Pesa User)</option>
+      <option value="unregistered">Send Money (Unregistered / Other Networks)</option>
+      <option value="withdraw">Withdraw at Agent</option>
+      <option value="paybill">Paybill (e.g. KPLC, Water)</option>
+      <option value="buygoods">Buy Goods (Till Number)</option>
+    </select>
+    <button onclick="calculate()">Calculate Fee</button>
+    <p id="result"></p>
+  </div>
+
+  <script>
+    function calculate() {
+      const amount = parseInt(document.getElementById("amount").value);
+      const type = document.getElementById("type").value;
+      let fee = 0;
+
+      if (isNaN(amount) || amount <= 0) {
+        return document.getElementById("result").innerText = "Enter a valid amount!";
+      }
+
+      if (type === "send") { // Registered Users
+        if (amount <= 100) fee = 0;
+        else if (amount <= 500) fee = 7;
+        else if (amount <= 1000) fee = 13;
+        else if (amount <= 1500) fee = 23;
+        else if (amount <= 2500) fee = 33;
+        else if (amount <= 3500) fee = 53;
+        else if (amount <= 5000) fee = 57;
+        else if (amount <= 7500) fee = 78;
+        else if (amount <= 10000) fee = 90;
+        else if (amount <= 15000) fee = 100;
+        else if (amount <= 20000) fee = 105;
+        else if (amount <= 35000) fee = 108;
+        else fee = 108;
+
+      } else if (type === "unregistered") { // Unregistered / Other Networks
+        if (amount <= 100) fee = 0;
+        else if (amount <= 500) fee = 45;
+        else if (amount <= 1000) fee = 49;
+        else if (amount <= 1500) fee = 59;
+        else if (amount <= 2500) fee = 74;
+        else if (amount <= 3500) fee = 112;
+        else if (amount <= 5000) fee = 135;
+        else if (amount <= 7500) fee = 166;
+        else if (amount <= 10000) fee = 205;
+        else if (amount <= 15000) fee = 265;
+        else if (amount <= 20000) fee = 288;
+        else if (amount <= 35000) fee = 309;
+        else fee = 309;
+
+      } else if (type === "withdraw") { // Agent Withdrawals
+        if (amount <= 100) fee = 11;
+        else if (amount <= 500) fee = 29;
+        else if (amount <= 1000) fee = 29;
+        else if (amount <= 1500) fee = 29;
+        else if (amount <= 2500) fee = 29;
+        else if (amount <= 3500) fee = 52;
+        else if (amount <= 5000) fee = 69;
+        else if (amount <= 7500) fee = 87;
+        else if (amount <= 10000) fee = 115;
+        else if (amount <= 15000) fee = 167;
+        else if (amount <= 20000) fee = 185;
+        else if (amount <= 35000) fee = 197;
+        else if (amount <= 50000) fee = 278;
+        else fee = 309;
+
+      } else if (type === "paybill") { // Paybill is like sending to registered
+        if (amount <= 100) fee = 0;
+        else if (amount <= 500) fee = 7;
+        else if (amount <= 1000) fee = 13;
+        else if (amount <= 1500) fee = 23;
+        else if (amount <= 2500) fee = 33;
+        else if (amount <= 3500) fee = 53;
+        else if (amount <= 5000) fee = 57;
+        else if (amount <= 7500) fee = 78;
+        else if (amount <= 10000) fee = 90;
+        else if (amount <= 15000) fee = 100;
+        else if (amount <= 20000) fee = 105;
+        else if (amount <= 35000) fee = 108;
+        else fee = 108;
+
+      } else if (type === "buygoods") { // Buy Goods is FREE
+        fee = 0;
+      }
+
+      document.getElementById("result").innerText = `For Ksh ${amount}, the fee is Ksh ${fee}`;
+    }
+  </script>
+</body>
+  </html>
